@@ -23,7 +23,7 @@ les commandes de [Maven](https://maven.apache.org/),
 [Picocli](https://picocli.info/) et notamment de travailler en groupe au travers
  de [GitHub](https://github.com/).
 
-Pour lancer le programme, il faut lancer la commande maven dans le
+Pour lancer le programme, il faut entrer la commande maven dans le
 terminal :
   `mvn clean package test`
 Cette commande permet de compiler l'application qui peut donc être exécuté à
