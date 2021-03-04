@@ -8,3 +8,5 @@
 /httpRequests/
 # Target ignored files
 /target/
+# IntelliJ ignored files
+/.idea/
