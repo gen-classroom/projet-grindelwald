@@ -19,10 +19,9 @@ Suisse.
 
 Le projet est une application simple qui affiche "Hello World". La création du
 projet est basée sur le cours de RES. Ce projet nous permet de familiariser avec
-les commandes de <p><a href="https://maven.apache.org/" title="maven">Maven</a><
-/p>, <p><a href="https://picocli.info/" title="picocli">Picocli</a></p> et
-notamment de travailler en groupe au travers de <p><a href="https://github.com/"
-title="github">GitHub</a></p>
+les commandes de [Maven](https://maven.apache.org/),
+[Picocli](https://picocli.info/) et notamment de travailler en groupe au travers
+ de [GitHub](https://github.com/).
 
 Pour lancer le programme, il faut lancer la commande maven dans le
 terminal :
