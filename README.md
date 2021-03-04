@@ -25,8 +25,8 @@ les commandes de [Maven](https://maven.apache.org/),
 
 Pour lancer le programme, il faut entrer la commande maven dans le
 terminal :
-  `mvn clean package test`
+  `mvn clean package test`.
 Cette commande permet de compiler l'application qui peut donc être exécuté à
 l'aide de la commande suivante :
-  `java -cp target/lab2-1.0-SNAPSHOT.jar ch.heig.gen.App`
+  `java -cp target/lab2-1.0-SNAPSHOT.jar ch.heig.gen.App`.
 Le message _Hello World!_ s'affiche à l'éran.
