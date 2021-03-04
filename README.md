@@ -25,7 +25,7 @@ les commandes de <p><a href="https://maven.apache.org/" title="maven">Maven</a><
 notamment de travailler en groupe au travers de <p><a href="https://github.com/"
 title="github">GitHub</a></p>
 
-Pour lancer le programme, il faut lancer la commande de maven dans le
+Pour lancer le programme, il faut lancer la commande maven dans le
 terminal :
   `mvn clean package test`
 Cette commande permet de compiler l'application qui peut donc être exécuté à
