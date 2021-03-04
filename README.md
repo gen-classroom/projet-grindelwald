@@ -15,19 +15,20 @@ Suisse.
 [Wagner]: https://en.wikipedia.org/wiki/Richard_Wagner
 
 
-
-
-### Projet de Maven
+### Projet Maven
 
 Le projet est une application simple qui affiche "Hello World". La création du
 projet est basée sur le cours de RES. Ce projet nous permet de familiariser avec
-les commandes de [maven], [picocli] et notamment de travailler en groupe au
-travers de [GitHub]
+les commandes de <p><a href="https://maven.apache.org/" title="maven">Maven</a><
+/p>
+, <p><a href="https://picocli.info/" title="picocli">Picocli</a></p> et
+notamment de travailler en groupe au travers de <p><a href="https://github.com/"
+title="github">GitHub</a></p>
 
-Pour lancer le programme, il faut commencer la commande de maven dans le
+Pour lancer le programme, il faut lancer la commande de maven dans le
 terminal :
   `mvn clean package test`
-Cette commande permet de compiler l'application. Nous pouvons dès maintenant
-l'exécuter avec la commande suivante:
+Cette commande permet de compiler l'application qui peut donc être exécuté à
+l'aide de la commande suivante :
   `java -cp target/lab2-1.0-SNAPSHOT.jar ch.heig.gen.App`
-Nous voyons donc [Hello World!] affiché au terminal
+Le message _Hello world!_ s'affiche à l'éran.
