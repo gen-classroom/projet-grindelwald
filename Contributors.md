@@ -7,3 +7,4 @@ Make sure you PGP-sign the commit where you modify this file!
 
 | Date | PGP short fingerprint | Name in PGP identity |
 |----|----|----|
+| 08.03.21 | C2242BB7 | Roosembert Palacios |
