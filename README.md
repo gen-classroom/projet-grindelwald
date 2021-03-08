@@ -17,9 +17,8 @@ Suisse.
 
 ### Projet Maven
 
-Le projet est une application simple qui affiche _Hello World!_. La création du
-projet est basée sur le cours de RES. Ce projet nous permet de familiariser avec
-les commandes de [Maven](https://maven.apache.org/),
+La création du projet est basée sur le cours de RES. Ce projet nous permet de 
+familiariser avec les commandes de [Maven](https://maven.apache.org/),
 [Picocli](https://picocli.info/) et notamment de travailler en groupe au travers
  de [GitHub](https://github.com/).
 
@@ -28,5 +27,4 @@ terminal :
   `mvn clean package test`.
 Cette commande permet de compiler l'application qui peut donc être exécuté à
 l'aide de la commande suivante :
-  `java -cp target/lab2-1.0-SNAPSHOT.jar ch.heig.gen.App`.
-Le message _Hello World!_ s'affiche à l'éran.
+  `java -cp target/lab2-1.0-SNAPSHOT.jar ch.heig.gen.MainCommand`.
