@@ -27,4 +27,4 @@ terminal :
   `mvn clean package test`.
 Cette commande permet de compiler l'application qui peut donc être exécuté à
 l'aide de la commande suivante :
-  `java -cp target/lab2-1.0-SNAPSHOT.jar ch.heig.gen.MainCommand`.
+  `mvn exec:java`.
