@@ -2,11 +2,10 @@ package ch.heig.gen;
 
 import picocli.CommandLine;
 
-//TODO : Donner un nom et une description a la commande et aux sous commandes
 @CommandLine.Command(
-        name = "testCommand",
+        name = "arancia",
         subcommands = {NewCommand.class, CleanCommand.class, BuildCommand.class, ServeCommand.class},
-        description = "Not implemented",
+        description = "Description stub.",
         mixinStandardHelpOptions = true,
         version = "1")
 public class MainCommand {
