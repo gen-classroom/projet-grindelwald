@@ -11,3 +11,7 @@
 # IntelliJ ignored files
 /.idea/
 lab2.iml
+# Eclipse CDT
+/.classpath
+/.project
+/.settings/
