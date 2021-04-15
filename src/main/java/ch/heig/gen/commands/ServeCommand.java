@@ -1,15 +1,15 @@
-package ch.heig.gen;
+package ch.heig.gen.commands;
 
 import picocli.CommandLine;
 
 @CommandLine.Command(
-        name = "new",
+        name = "serve",
         description = "Not implemented",
         mixinStandardHelpOptions = true,
         version = "1")
-public class NewCommand implements Runnable {
+public class ServeCommand implements Runnable {
     @Override
     public void run() {
-        System.out.println("'new' command not implemented");
+        System.out.println("'serve' command not implemented");
     }
 }

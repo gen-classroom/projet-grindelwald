@@ -1,4 +1,4 @@
-package ch.heig.gen;
+package ch.heig.gen.commands;
 
 import picocli.CommandLine;
 

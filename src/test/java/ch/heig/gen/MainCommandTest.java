@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
 
+import ch.heig.gen.commands.MainCommand;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
