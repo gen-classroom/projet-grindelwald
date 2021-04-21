@@ -5,7 +5,7 @@ import picocli.CommandLine;
 @CommandLine.Command(
         name = "arancia",
         subcommands = {NewCommand.class, CleanCommand.class, BuildCommand.class, ServeCommand.class},
-        description = "Program allowing the generation of static site from a simple Markdown document\n",
+        description = "Generates static websites from Markdown documents\n",
         mixinStandardHelpOptions = true,
         version = "1")
 public class MainCommand {
