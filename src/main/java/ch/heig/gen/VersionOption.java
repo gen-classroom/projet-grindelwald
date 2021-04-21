@@ -13,7 +13,7 @@ public class VersionOption implements CommandLine.IVersionProvider {
 
     public String getVersionFromPom() throws IOException, XmlPullParserException {
         MavenXpp3Reader reader = new MavenXpp3Reader();
-        Model model = reader.read(new FileReader("pom.xml"));
+        Model model = reader.read(new FileReader("src/test/resources/project-pom.xml"));
         return model.getVersion();
     }
 
