@@ -4,7 +4,7 @@ import picocli.CommandLine;
 
 @CommandLine.Command(
         name = "clean",
-        description = "Not implemented",
+        description = "Cleans up the static site",
         mixinStandardHelpOptions = true,
         version = "1")
 public class CleanCommand implements Runnable {
