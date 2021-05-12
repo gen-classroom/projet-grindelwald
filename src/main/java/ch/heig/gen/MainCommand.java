@@ -7,7 +7,7 @@ import picocli.CommandLine;
         subcommands = {NewCommand.class, CleanCommand.class, BuildCommand.class, ServeCommand.class},
         description = "Description stub.",
         mixinStandardHelpOptions = true,
-        version = "1")
+        versionProvider = VersionOption.class)
 public class MainCommand {
 
     public static void main(String[] args) {
