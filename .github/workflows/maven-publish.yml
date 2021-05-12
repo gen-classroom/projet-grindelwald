@@ -26,4 +26,4 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots verify
+        run: mvn verify --batch-mode --update-snapshots --errors --fail-at-end --show-version
