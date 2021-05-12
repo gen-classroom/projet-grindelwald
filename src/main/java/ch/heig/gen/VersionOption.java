@@ -5,15 +5,18 @@ import picocli.CommandLine;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class VersionOption implements CommandLine.IVersionProvider {
 
     public String getVersionFromPom() throws IOException, XmlPullParserException {
+        InputStream inputStream = this.getClass().getResourceAsStream("/project-pom.xml");
+        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
         MavenXpp3Reader reader = new MavenXpp3Reader();
-        Model model = reader.read(new FileReader("src/test/resources/project-pom.xml"));
+        Model model = reader.read(bufferedReader);
+
         return model.getVersion();
     }
 
