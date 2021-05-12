@@ -4,7 +4,7 @@ import picocli.CommandLine;
 
 @CommandLine.Command(
         name = "build",
-        description = "Not implemented",
+        description = "Builds the static site",
         mixinStandardHelpOptions = true,
         version = "1")
 public class BuildCommand implements Runnable {
