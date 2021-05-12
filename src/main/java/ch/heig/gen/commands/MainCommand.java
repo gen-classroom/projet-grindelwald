@@ -4,7 +4,7 @@ import picocli.CommandLine;
 
 @CommandLine.Command(
         name = "arancia",
-        subcommands = {NewCommand.class, CleanCommand.class, BuildCommand.class, ServeCommand.class},
+        subcommands = {InitCommand.class, CleanCommand.class, BuildCommand.class, ServeCommand.class},
         description = "Description stub.",
         mixinStandardHelpOptions = true,
         version = "1")
