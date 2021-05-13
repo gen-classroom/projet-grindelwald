@@ -3,9 +3,7 @@ package ch.heig.gen;
 import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
-import java.nio.file.Path;
 import java.util.List;
 
 import ch.heig.gen.commands.MainCommand;
