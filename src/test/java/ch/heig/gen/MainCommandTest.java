@@ -3,7 +3,9 @@ package ch.heig.gen;
 import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
+import java.nio.file.Path;
 import java.util.List;
 
 import ch.heig.gen.commands.MainCommand;
@@ -59,13 +61,5 @@ public class MainCommandTest {
     String err = errStream.toString();
     assertTrue("Return code signals error", retCode != 0);
     assertTrue("Execution asks for required command", err.contains("Missing required subcommand"));
-  }
-
-  @Test
-  public void subcommandsAreValid() {
-    for (String cmd : subcommands) {
-      int retCode = new CommandLine(new MainCommand()).execute(cmd);
-      assertTrue("Return code is zero", retCode == 0);
-    }
   }
 }

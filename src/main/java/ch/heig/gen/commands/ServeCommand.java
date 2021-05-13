@@ -24,9 +24,6 @@ public class ServeCommand implements Runnable {
             File site = pathToSite.toFile();
             if(site.isDirectory()) {
                 File[] files = site.listFiles();
-                if(files == null) {
-                    throw new IOException("The site has no content.");
-                }
 
                 File dirBuild = findFile("build", site);
                 if(dirBuild == null) {
@@ -34,15 +31,20 @@ public class ServeCommand implements Runnable {
                 }
 
                 File dirContent = findFile("content", dirBuild);
-                System.out.println(dirContent.getAbsolutePath());
                 if(dirContent == null) {
                     throw new IOException("There was an error during the site compilation.");
                 }
 
                 ArrayList<File> htmlFiles = findFileByExtension(".html", dirContent);
+                if(htmlFiles.isEmpty()) {
+                    throw new IOException("There is no page to show");
+                }
+
                 for(File f : htmlFiles) {
                     Desktop.getDesktop().browse(f.toURI());
                 }
+            } else {
+                throw new IOException("Incorrect path to site");
             }
         } catch (IOException exception) {
             System.out.println(exception.getMessage());
