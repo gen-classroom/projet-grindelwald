@@ -23,8 +23,6 @@ public class ServeCommand implements Runnable {
         try {
             File site = pathToSite.toFile();
             if(site.isDirectory()) {
-                File[] files = site.listFiles();
-
                 File dirBuild = findFile("build", site);
                 if(dirBuild == null) {
                     throw new IOException("The site has not yet been built.");
@@ -35,7 +33,7 @@ public class ServeCommand implements Runnable {
                     throw new IOException("There was an error during the site compilation.");
                 }
 
-                ArrayList<File> htmlFiles = findFileByExtension(".html", dirContent);
+                ArrayList<File> htmlFiles = findHtmlFiles(dirContent);
                 if(htmlFiles.isEmpty()) {
                     throw new IOException("There is no page to show");
                 }
@@ -65,7 +63,7 @@ public class ServeCommand implements Runnable {
         return null;
     }
 
-    private ArrayList<File> findFileByExtension(String extension, File dir) {
+    private ArrayList<File> findHtmlFiles(File dir) {
         ArrayList<File> list = new ArrayList<>();
         File[] files = dir.listFiles();
 
@@ -74,7 +72,7 @@ public class ServeCommand implements Runnable {
                 String filename = f.getName();
                 int lastIndexOf = filename.lastIndexOf(".");
 
-                if(filename.substring(lastIndexOf).equals(extension)) {
+                if(filename.substring(lastIndexOf).equals(".html")) {
                     list.add(f);
                 }
             }
