@@ -18,6 +18,8 @@ public class ServeCommand implements Runnable {
     @CommandLine.Parameters(description = "The path to the site in order to be opened in web browser.")
     Path pathToSite;
 
+    static final String HTML_EXTENSION = ".html";
+
     @Override
     public void run() {
         try {
@@ -72,7 +74,7 @@ public class ServeCommand implements Runnable {
                 String filename = f.getName();
                 int lastIndexOf = filename.lastIndexOf(".");
 
-                if(filename.substring(lastIndexOf).equals(".html")) {
+                if(filename.substring(lastIndexOf).equals(HTML_EXTENSION)) {
                     list.add(f);
                 }
             }
