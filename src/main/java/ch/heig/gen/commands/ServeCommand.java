@@ -2,7 +2,6 @@ package ch.heig.gen.commands;
 
 import picocli.CommandLine;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -38,7 +37,7 @@ public class ServeCommand implements Runnable {
                 if(htmlFiles.isEmpty()) {
                     throw new IOException("There is no page to show");
                 }
-                
+
                 for(File f : htmlFiles) {
                     openUriInBrowser(f.toURI());
                 }
@@ -88,16 +87,16 @@ public class ServeCommand implements Runnable {
 
         try{
 
-            if (os.indexOf( "win" ) >= 0) {
+            if (os.contains("win")) {
 
                 // this doesn't support showing urls in the form of "page.html#nameLink"
                 rt.exec( "rundll32 url.dll,FileProtocolHandler " + uri);
 
-            } else if (os.indexOf( "mac" ) >= 0) {
+            } else if (os.contains("mac")) {
 
                 rt.exec( "open " + uri);
 
-            } else if (os.indexOf( "nix") >=0 || os.indexOf( "nux") >=0) {
+            } else if (os.contains("nix") || os.contains("nux")) {
 
                 // Do a best guess on unix until we get a platform independent way
                 // Build a list of browsers to try, in this order.
@@ -105,9 +104,9 @@ public class ServeCommand implements Runnable {
                         "netscape","opera","links","lynx"};
 
                 // Build a command string which looks like "browser1 "url" || browser2 "url" ||..."
-                StringBuffer cmd = new StringBuffer();
+                StringBuilder cmd = new StringBuilder();
                 for (int i=0; i<browsers.length; i++) {
-                    cmd.append((i == 0 ? "" : " || ") + browsers[i] + " \"" + uri + "\" ");
+                    cmd.append(i == 0 ? "" : " || ").append(browsers[i]).append(" \"").append(uri).append("\" ");
                 }
 
                 rt.exec(new String[] { "sh", "-c", cmd.toString() });
