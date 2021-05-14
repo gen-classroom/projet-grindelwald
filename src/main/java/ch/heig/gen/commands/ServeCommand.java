@@ -38,8 +38,7 @@ public class ServeCommand implements Runnable {
                 if(htmlFiles.isEmpty()) {
                     throw new IOException("There is no page to show");
                 }
-
-                Runtime rt = Runtime.getRuntime();
+                
                 for(File f : htmlFiles) {
                     openUriInBrowser(f.toURI());
                 }
