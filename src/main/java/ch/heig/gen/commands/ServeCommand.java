@@ -23,12 +23,12 @@ public class ServeCommand implements Runnable {
         try {
             File site = pathToSite.toFile();
             if(site.isDirectory()) {
-                File dirBuild = findFile("build", site);
+                File dirBuild = findDir("build", site);
                 if(dirBuild == null) {
                     throw new IOException("The site has not yet been built.");
                 }
 
-                File dirContent = findFile("content", dirBuild);
+                File dirContent = findDir("content", dirBuild);
                 if(dirContent == null) {
                     throw new IOException("There was an error during the site compilation.");
                 }
@@ -49,7 +49,7 @@ public class ServeCommand implements Runnable {
         }
     }
 
-    private File findFile(String filename, File dir) throws IOException {
+    private File findDir(String filename, File dir) throws IOException {
         File[] files = dir.listFiles();
 
         if(files != null) {
