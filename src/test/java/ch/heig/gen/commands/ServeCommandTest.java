@@ -9,11 +9,7 @@ import picocli.CommandLine;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.io.PrintStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
 
 public class ServeCommandTest {
     // Used to restore JVM print streams
@@ -23,8 +19,6 @@ public class ServeCommandTest {
     // Used to collect command output
     final ByteArrayOutputStream outStream = new ByteArrayOutputStream();
     final ByteArrayOutputStream errStream = new ByteArrayOutputStream();
-
-    final List<String> subcommands = List.of("new", "clean", "build", "serve");
 
     @Before
     public void setUpStreams() {
