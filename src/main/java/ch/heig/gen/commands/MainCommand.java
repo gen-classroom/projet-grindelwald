@@ -12,6 +12,8 @@ public class MainCommand {
 
     public static void main(String[] args) {
         int exitCode = new CommandLine(new MainCommand()).execute(args);
-        System.exit(exitCode);
+        if(exitCode != 0) {
+            System.exit(exitCode);
+        }
     }
 }

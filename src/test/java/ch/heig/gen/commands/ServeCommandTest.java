@@ -52,40 +52,26 @@ public class ServeCommandTest {
 
     @Test
     public void ServeCommandNeedsACompiledSite() {
-        int retCode = new CommandLine(new MainCommand()).execute("serve", "src/test/");
+        int retCode = new CommandLine(new MainCommand()).execute("serve", "src/test/resources");
         assertEquals("Return code is zero", 0, retCode);
         String err = outStream.toString();
-        assertTrue(err.contains("The site has not yet been built"));
+        assertEquals(err,"The site has not yet been built.\r\n");
     }
 
     @Test
     public void ServeCommandNeedsACorrectlyBuiltSite() {
-        File build = new File("src/test/build");
+        File build = new File("src/test/resources/build");
         build.mkdir();
-        int retCode = new CommandLine(new MainCommand()).execute("serve", "src/test/");
+        int retCode = new CommandLine(new MainCommand()).execute("serve", "src/test/resources");
         assertEquals("Return code is zero", 0, retCode);
         String err = outStream.toString();
-        assertTrue(err.contains("There was an error during the site compilation"));
+        assertEquals(err, "The site is not correctly built.\r\n");
         build.delete();
-    }
-
-    @Test
-    public void ServeCommandNeedsAContentToShow() {
-        File build = new File("src/test/build/");
-        build.mkdir();
-        File content = new File("src/test/build/content");
-        content.mkdir();
-        int retCode = new CommandLine(new MainCommand()).execute("serve", "src/test/");
-        assertEquals("Return code is zero", 0, retCode);
-        String err = outStream.toString();
-        assertTrue(err.contains("There is no page to show"));
-        build.delete();
-        content.delete();
     }
 
     @Test
     public void ServeCommandShowsSitePerfectly() {
-        int retCode = new CommandLine(new MainCommand()).execute("serve", "src/test/resources/");
+        int retCode = new CommandLine(new MainCommand()).execute("serve", "src/test/resources/mon/site");
         assertEquals("Return code is zero", 0, retCode);
     }
 }

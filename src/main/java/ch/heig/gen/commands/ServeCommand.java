@@ -1,5 +1,7 @@
 package ch.heig.gen.commands;
 
+import io.javalin.Javalin;
+import io.javalin.http.staticfiles.Location;
 import picocli.CommandLine;
 
 import java.io.File;
@@ -15,34 +17,33 @@ import java.util.ArrayList;
         mixinStandardHelpOptions = true,
         version = "1")
 public class ServeCommand implements Runnable {
-    @CommandLine.Parameters(description = "The path to the site in order to be opened in web browser.")
+    @CommandLine.Parameters(paramLabel = "SITE", description = "Path to the site to be opened in web browser.")
     Path pathToSite;
 
-    static final String HTML_EXTENSION = ".html";
+    static final String INDEX_HTML = "index.html";
 
     @Override
     public void run() {
         try {
             File site = pathToSite.toFile();
             if(site.isDirectory()) {
-                File dirBuild = findDir("build", site);
+                File dirBuild = findFile("build", site);
                 if(dirBuild == null) {
                     throw new IOException("The site has not yet been built.");
                 }
 
-                File dirContent = findDir("content", dirBuild);
-                if(dirContent == null) {
-                    throw new IOException("There was an error during the site compilation.");
-                }
+                // Serve the site
+                Javalin.create(javalinConfig -> {
+                    javalinConfig.addStaticFiles(dirBuild.getAbsolutePath(),
+                            Location.EXTERNAL);
+                }).start(8080);
 
-                ArrayList<File> htmlFiles = findHtmlFiles(dirContent);
-                if(htmlFiles.isEmpty()) {
-                    throw new IOException("There is no page to show");
+                File file = findFile(INDEX_HTML, dirBuild);
+                if(file == null) {
+                    throw new IOException("The site is not correctly built.");
                 }
+                openUriInBrowser(file.toURI());
 
-                for(File f : htmlFiles) {
-                    openUriInBrowser(f.toURI());
-                }
             } else {
                 throw new IOException("Incorrect path to site");
             }
@@ -51,7 +52,7 @@ public class ServeCommand implements Runnable {
         }
     }
 
-    private File findDir(String filename, File dir) throws IOException {
+    private File findFile(String filename, File dir) throws IOException {
         File[] files = dir.listFiles();
 
         if(files != null) {
@@ -65,29 +66,11 @@ public class ServeCommand implements Runnable {
         return null;
     }
 
-    private ArrayList<File> findHtmlFiles(File dir) {
-        ArrayList<File> list = new ArrayList<>();
-        File[] files = dir.listFiles();
-
-        if(files != null) {
-            for(File f : files) {
-                String filename = f.getName();
-                int lastIndexOf = filename.lastIndexOf(".");
-
-                if(filename.substring(lastIndexOf).equals(HTML_EXTENSION)) {
-                    list.add(f);
-                }
-            }
-        }
-
-        return list;
-    }
-
     private void openUriInBrowser(URI uri) {
         String os = System.getProperty("os.name").toLowerCase();
         Runtime rt = Runtime.getRuntime();
 
-        try{
+        try {
 
             if (os.contains("win")) {
 
