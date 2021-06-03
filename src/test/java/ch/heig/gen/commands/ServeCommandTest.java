@@ -54,15 +54,15 @@ public class ServeCommandTest {
         int retCode = new CommandLine(new MainCommand()).execute("serve", "");
         assertEquals("Return code is zero", 0, retCode);
         String err = outStream.toString();
-        assertEquals("Incorrect path to site.\r\n", err);
+        assertTrue(err.contains("Incorrect path to site."));
     }
 
     @Test
-    public void ServeCommandNeedsACompiledSite() {
+    public void ServeCommandNeedsABuiltSite() {
         int retCode = new CommandLine(new MainCommand()).execute("serve", "src/test/resources");
         assertEquals("Return code is zero", 0, retCode);
         String err = outStream.toString();
-        assertEquals(err,"The site has not yet been built.\r\n");
+        assertTrue(err.contains("The site has not yet been built."));
     }
 
     @Test
@@ -73,7 +73,7 @@ public class ServeCommandTest {
         assertEquals("Return code is zero", 0, retCode);
 
         String err = outStream.toString();
-        assertEquals("The site is not correctly built.\r\n", err);
+        assertTrue(err.contains("The site is not correctly built."));
         build.delete();
         new File("src/test/resources/empty").delete();
 
