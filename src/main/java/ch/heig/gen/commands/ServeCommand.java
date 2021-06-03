@@ -26,26 +26,30 @@ public class ServeCommand implements Runnable {
     public void run() {
         try {
             File site = pathToSite.toFile();
-            if(site.isDirectory()) {
-                File dirBuild = findFile("build", site);
-                if(dirBuild == null) {
+            site.getAbsolutePath();
+            if(site.exists() && site.isDirectory()) {
+                Path pathBuild = pathToSite.resolve("build");
+                File dirBuild = pathBuild.toFile();
+                if(!dirBuild.exists()) {
                     throw new IOException("The site has not yet been built.");
                 }
 
                 // Serve the site
-                Javalin.create(javalinConfig -> {
+                Javalin server = Javalin.create(javalinConfig -> {
                     javalinConfig.addStaticFiles(dirBuild.getAbsolutePath(),
                             Location.EXTERNAL);
                 }).start(8080);
 
-                File file = findFile(INDEX_HTML, dirBuild);
-                if(file == null) {
+                Path pathIndex = pathBuild.resolve(INDEX_HTML);
+                File index = pathIndex.toFile();
+                if(!index.exists()) {
+                    server.stop();
                     throw new IOException("The site is not correctly built.");
                 }
-                openUriInBrowser(file.toURI());
+                openUriInBrowser(index.toURI());
 
             } else {
-                throw new IOException("Incorrect path to site");
+                throw new IOException("Incorrect path to site.");
             }
         } catch (IOException exception) {
             System.out.println(exception.getMessage());

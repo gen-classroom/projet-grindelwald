@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import picocli.CommandLine;
 
 import java.io.ByteArrayOutputStream;
@@ -35,6 +37,13 @@ public class ServeCommandTest {
     }
 
     @Test
+    public void ServeCommandShowsSitePerfectly() {
+        int retCode = new CommandLine(new MainCommand()).execute("serve", "src/test/resources/mon/site");
+        String err = errStream.toString();
+        assertEquals("Return code is zero", 0, retCode);
+    }
+
+    @Test
     public void ServeCommandNeedsAPath() {
         int retCode = new CommandLine(new MainCommand()).execute("serve");
         String err = errStream.toString();
@@ -47,7 +56,7 @@ public class ServeCommandTest {
         int retCode = new CommandLine(new MainCommand()).execute("serve", "");
         assertEquals("Return code is zero", 0, retCode);
         String err = outStream.toString();
-        assertTrue(err.contains("Incorrect path to site"));
+        assertEquals("Incorrect path to site.\r\n", err);
     }
 
     @Test
@@ -60,18 +69,15 @@ public class ServeCommandTest {
 
     @Test
     public void ServeCommandNeedsACorrectlyBuiltSite() {
-        File build = new File("src/test/resources/build");
-        build.mkdir();
-        int retCode = new CommandLine(new MainCommand()).execute("serve", "src/test/resources");
+        File build = new File("src/test/resources/empty/build");
+        build.mkdirs();
+        int retCode = new CommandLine(new MainCommand()).execute("serve", "src/test/resources/empty");
         assertEquals("Return code is zero", 0, retCode);
-        String err = outStream.toString();
-        assertEquals(err, "The site is not correctly built.\r\n");
-        build.delete();
-    }
 
-    @Test
-    public void ServeCommandShowsSitePerfectly() {
-        int retCode = new CommandLine(new MainCommand()).execute("serve", "src/test/resources/mon/site");
-        assertEquals("Return code is zero", 0, retCode);
+        String err = outStream.toString();
+        assertEquals("The site is not correctly built.\r\n", err);
+        build.delete();
+        new File("src/test/resources/empty").delete();
+
     }
 }
