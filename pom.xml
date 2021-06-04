@@ -9,11 +9,16 @@
   <name>arancia</name>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>1.15</maven.compiler.source>
+    <maven.compiler.target>1.15</maven.compiler.target>
     <main.class>ch.heig.gen.commands.MainCommand</main.class>
   </properties>
   <dependencies>
+      <dependency>
+          <groupId>org.commonmark</groupId>
+          <artifactId>commonmark</artifactId>
+          <version>0.17.2</version>
+      </dependency>
     <dependency>
       <groupId>info.picocli</groupId>
       <artifactId>picocli</artifactId>
@@ -66,6 +71,14 @@
           <mainClass>${main.class}</mainClass>
         </configuration>
       </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <source>15</source>
+                <target>15</target>
+            </configuration>
+        </plugin>
     </plugins>
   </build>
 </project>
